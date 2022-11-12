@@ -1,7 +1,7 @@
 # reseausocial
 
-conception d'une application reseau social
-<img alt="Ma formation flutter sur les réseaux sociaux" height="100" src="image reseau sociaux.jpg" title="Resau social" width="100"/>
+<p> conception d'une application reseau social</p>
+<img alt="Ma formation flutter sur les réseaux sociaux" height="500" src="image reseau sociaux.jpg" title="Resau social" width="500"/>
 
 ## Getting Started
 
