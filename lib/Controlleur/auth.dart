@@ -41,14 +41,28 @@ class _Auth extends State<Auth>{
       body: SingleChildScrollView(
         child: InkWell(
           onTap:null,
-          child: SafeArea(
-            child: Column(
-              children: [
-                Image.asset("assets/darkBee.png",height: MediaQuery.of(context).size.height/5,),
-                logOrCreatButtom()
-              ],
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height:(MediaQuery.of(context).size.height>700)?MediaQuery.of(context).size.height:700,
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Image.asset("assets/darkBee.png",height: MediaQuery.of(context).size.height/5,),
+                  logOrCreatButtom(),
+                  Expanded(
+                      child: PageView(
+                        controller: _pageController,
+                        children: [
+                          Text("Se connecter"),
+                          Text("Crée un compte")
+                        ],
+                      ),
+                    flex: 2,
+                  )
+                ],
+              ),
             ),
-          ),
+          )
         )
       ),
     );
@@ -57,13 +71,13 @@ class _Auth extends State<Auth>{
   Widget logOrCreatButtom(){
     return Container(
       width: 300,
-      height: 300,
+      height: 50,
       child: CustomPaint(
         painter:Mypainter(pageController: _pageController),
         child: Row(
           children: [
-            btn(name: "Se connecter"),
-            btn(name: "S'authentifier")
+            btn(name:"Se connecter"),
+            btn(name:"Créé un compte")
           ],
         ),
       ),
