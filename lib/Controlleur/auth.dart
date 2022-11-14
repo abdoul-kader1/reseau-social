@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import '../Painter/mypainter.dart';
 
 class Auth extends StatefulWidget{
   @override
@@ -44,8 +44,8 @@ class _Auth extends State<Auth>{
           child: SafeArea(
             child: Column(
               children: [
-                Image.asset("assets/darkBee.png",height: MediaQuery.of(context).size.height/5,)
-
+                Image.asset("assets/darkBee.png",height: MediaQuery.of(context).size.height/5,),
+                logOrCreatButtom()
               ],
             ),
           ),
@@ -59,7 +59,7 @@ class _Auth extends State<Auth>{
       width: 300,
       height: 300,
       child: CustomPaint(
-        painter: ,
+        painter:Mypainter(pageController: _pageController),
         child: Row(
           children: [
             btn(name: "Se connecter"),
