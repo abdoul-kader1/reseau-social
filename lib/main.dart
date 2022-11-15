@@ -15,7 +15,6 @@ void main() async{
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.userChanges(),
         builder: (BuildContext context,snapshot){
-          print("${snapshot.hasData}");
+          //print("${snapshot.hasData}");
           return (snapshot.hasData)?Acceuil():Auth();
         },
       ),

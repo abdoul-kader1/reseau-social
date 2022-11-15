@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Painter/mypainter.dart';
+import '../Modele/couleur_theme.dart';
+import '../Modele/mypainter.dart';
 import '../custom_widget/mygradient.dart';
 import '../custom_widget/mytextfield.dart';
 import '../custom_widget/paddingwidth.dart';
@@ -44,13 +45,15 @@ class _Auth extends State<Auth>{
             FocusScope.of(context).requestFocus(FocusNode());
           },
           child: Container(
-            decoration: Mygradient(startcolors: Colors.white,endcolors: Colors.red),
+            decoration: Mygradient(startcolors:Colorstheme().Primary(),endcolors: Colorstheme().Base()),
             width: MediaQuery.of(context).size.width,
             height:(MediaQuery.of(context).size.height>700)?MediaQuery.of(context).size.height:700,
             child: SafeArea(
               child: Column(
                 children: [
-                  Image.asset("assets/darkBee.png",height: MediaQuery.of(context).size.height/5),
+                  PaddingWidth(
+                      child: Image.asset("assets/darkBee.png",height: MediaQuery.of(context).size.height/5)
+                  ),
                   logOrCreatButtom(),
                   Expanded(
                       child: PageView(
@@ -61,6 +64,24 @@ class _Auth extends State<Auth>{
                         ],
                       ),
                     flex: 2,
+                  ),
+                  PaddingWidth(
+                      child: TextButton(
+                        onPressed: (){
+
+                        },
+                        child:Container(
+                          decoration: Mygradient(
+                            radius: 25,
+                            horizontal: true,
+                            startcolors: Colorstheme().Accent(),
+                            endcolors: Colorstheme().Primary()
+                          ),
+                          height: 50,
+                          width: MediaQuery.of(context).size.width*0.7,
+                          child:Center(child: Text("C'est partir !")),
+                        ),
+                      )
                   )
                 ],
               ),
@@ -73,6 +94,7 @@ class _Auth extends State<Auth>{
 
   Widget logOrCreatButtom(){
     return Container(
+      decoration: Mygradient(startcolors: Colorstheme().Accent(),endcolors:Colorstheme().Primary(),radius: 25),
       width: 300,
       height: 50,
       child: CustomPaint(
@@ -112,14 +134,17 @@ class _Auth extends State<Auth>{
     list.add(Mytextfield(controller:_email,hint: "Entrer votre email"));
     list.add(Mytextfield(controller:_mdp,obscure: true,hint: "Entrer votre mot de passe"));
     return PaddingWidth(
-        child:Card(
-          elevation: 7.5,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children:list,
+        child:Center(
+          child: Card(
+            elevation: 7.5,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children:list,
+              mainAxisSize: MainAxisSize.min,
+            ),
           ),
         ),
-      bottom: 200,
+      bottom: 100,
     );
   }
 
