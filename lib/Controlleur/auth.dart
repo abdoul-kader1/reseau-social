@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Painter/mypainter.dart';
+import '../custom_widget/mytextfield.dart';
+import '../custom_widget/paddingwidth.dart';
 
 class Auth extends StatefulWidget{
   @override
@@ -13,7 +15,6 @@ class _Auth extends State<Auth>{
   late TextEditingController _prenom;
   late TextEditingController _email;
   late TextEditingController _mdp;
-  late TextEditingController _surnom;
 
   @override
   void initState() {
@@ -22,7 +23,6 @@ class _Auth extends State<Auth>{
     _prenom=TextEditingController();
     _email=TextEditingController();
     _mdp=TextEditingController();
-    _surnom=TextEditingController();
     super.initState();
   }
   @override
@@ -32,7 +32,6 @@ class _Auth extends State<Auth>{
     _prenom.dispose();
     _email.dispose();
     _mdp.dispose();
-    _surnom.dispose();
     super.dispose();
   }
   @override
@@ -47,14 +46,14 @@ class _Auth extends State<Auth>{
             child: SafeArea(
               child: Column(
                 children: [
-                  Image.asset("assets/darkBee.png",height: MediaQuery.of(context).size.height/5,),
+                  Image.asset("assets/darkBee.png",height: MediaQuery.of(context).size.height/5),
                   logOrCreatButtom(),
                   Expanded(
                       child: PageView(
                         controller: _pageController,
                         children: [
-                          Text("Se connecter"),
-                          Text("Crée un compte")
+                          logCards(UserExiste:true),
+                          logCards(UserExiste: false)
                         ],
                       ),
                     flex: 2,
@@ -97,6 +96,26 @@ class _Auth extends State<Auth>{
             );
           },
         )
+    );
+  }
+
+  Widget logCards({required bool UserExiste}){
+    List<Widget>list=[];
+    if(!UserExiste){
+      list.add(Mytextfield(controller:_nom,hint: "Entrer votre nom"));
+      list.add(Mytextfield(controller:_prenom,hint: "Entrer votre prenom"));
+    }
+    list.add(Mytextfield(controller:_email,hint: "Entrer votre email"));
+    list.add(Mytextfield(controller:_mdp,obscure: true,hint: "Entrer votre mot de passe"));
+    return PaddingWidth(
+        child:Card(
+          elevation: 7.5,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children:list,
+          ),
+        ),
+      bottom: 200,
     );
   }
 
