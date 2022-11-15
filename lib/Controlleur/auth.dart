@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Painter/mypainter.dart';
+import '../custom_widget/mygradient.dart';
 import '../custom_widget/mytextfield.dart';
 import '../custom_widget/paddingwidth.dart';
 
@@ -39,8 +40,11 @@ class _Auth extends State<Auth>{
     return Scaffold(
       body: SingleChildScrollView(
         child: InkWell(
-          onTap:null,
+          onTap:(){
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
           child: Container(
+            decoration: Mygradient(startcolors: Colors.white,endcolors: Colors.red),
             width: MediaQuery.of(context).size.width,
             height:(MediaQuery.of(context).size.height>700)?MediaQuery.of(context).size.height:700,
             child: SafeArea(
