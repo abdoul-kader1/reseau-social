@@ -79,7 +79,7 @@ class _Auth extends State<Auth>{
                           ),
                           height: 50,
                           width: MediaQuery.of(context).size.width*0.7,
-                          child:Center(child: Text("C'est partir !")),
+                          child:Center(child: Text("C'est partir !",style: TextStyle(color: Colors.white),)),
                         ),
                       )
                   )
@@ -112,7 +112,7 @@ class _Auth extends State<Auth>{
   Expanded btn({required String name}){
     return Expanded(
         child: TextButton(
-          child: Text(name),
+          child: Text(name,style: TextStyle(color: Colors.blue),),
           onPressed: (){
             int page =(_pageController.page==0.0)?1:0;
             _pageController.animateToPage(
@@ -146,6 +146,31 @@ class _Auth extends State<Auth>{
         ),
       bottom: 100,
     );
+  }
+
+  VerifeiChampDeSaisie(){
+    bool singIn = _pageController.page==0;
+    String nom =_nom.text;
+    String prenom = _prenom.text;
+    String email = _email.text;
+    String mdp = _mdp.text;
+    if( (ConditionChampSaisie(email)) && (ConditionChampSaisie(mdp)) ){
+      if(singIn){
+        //methode de firebase
+      }else{
+        if((ConditionChampSaisie(nom)) && (ConditionChampSaisie(prenom))){
+          //methodoe de firebase
+        }else{
+          //arlette
+        }
+      }
+    }else{
+      //arlette
+    }
+  }
+
+  bool ConditionChampSaisie(String string){
+    return (string!=null && string=="");
   }
 
 }
