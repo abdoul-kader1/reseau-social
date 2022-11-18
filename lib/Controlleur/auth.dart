@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Modele/alerteHelper.dart';
 import '../Modele/couleur_theme.dart';
 import '../Modele/mypainter.dart';
 import '../custom_widget/mygradient.dart';
@@ -36,13 +37,17 @@ class _Auth extends State<Auth>{
     _mdp.dispose();
     super.dispose();
   }
+  hideKeborad(){
+    FocusScope.of(context).requestFocus(FocusNode());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: InkWell(
           onTap:(){
-            FocusScope.of(context).requestFocus(FocusNode());
+            hideKeborad();
           },
           child: Container(
             decoration: Mygradient(startcolors:Colorstheme().Primary(),endcolors: Colorstheme().Base()),
@@ -68,7 +73,7 @@ class _Auth extends State<Auth>{
                   PaddingWidth(
                       child: TextButton(
                         onPressed: (){
-
+                          VerifeiChampDeSaisie();
                         },
                         child:Container(
                           decoration: Mygradient(
@@ -150,6 +155,7 @@ class _Auth extends State<Auth>{
 
   VerifeiChampDeSaisie(){
     bool singIn = _pageController.page==0;
+    hideKeborad();
     String nom =_nom.text;
     String prenom = _prenom.text;
     String email = _email.text;
@@ -161,16 +167,16 @@ class _Auth extends State<Auth>{
         if((ConditionChampSaisie(nom)) && (ConditionChampSaisie(prenom))){
           //methodoe de firebase
         }else{
-          //arlette
+          AlerteHelper().Erreur(contexte: context,erreur: "Nom ou Prenom vide");
         }
       }
     }else{
-      //arlette
+      AlerteHelper().Erreur(contexte: context,erreur: "Mail ou mot de passe vide");
     }
   }
 
   bool ConditionChampSaisie(String string){
-    return (string!=null && string=="");
+    return (string!=null && string!="");
   }
 
 }
